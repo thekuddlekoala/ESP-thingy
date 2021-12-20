@@ -25,7 +25,8 @@ These are the options you can pass in the `options` table of `ESP:Add()`:
 * **Player** - should be set if the object is a character of a player ⚠
 * **PrimaryPart** - for objects with custom parts
 * **IsEnabled** - string which is checked in the `ESP` table to determine whether the object should be displayed, ex. set to `"NPCs"` and then set `ESP.NPCs = true` to enable
-if necessary, you can pass a function too, in which case it will just call it passing the box as an argument, and expect a true/false return
+if necessary
+    * **you can pass a function too**, in which case it will just call it passing the box as an argument, and expect a true/false return
 * **Temporary** - whether the object should be removed when the ESP is toggled
 * **ColorDynamic** - a function which returns the color the box should have, use if you really need the color to change depending on conditions
 * **RenderInNil** - whether the ESP should show the object when it's parented to nil, good for showing stuff in nil which you can't reparent
