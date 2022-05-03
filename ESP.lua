@@ -4,7 +4,7 @@ local ESP = {
 	Boxes = true,
 	BoxShift = CFrame.new(0,-1.5,0),
 	BoxSize = Vector3.new(4,6,0),
-	Color = Color3.fromRGB(255, 170, 0),
+	Color = Color3.new(0.596078, 1, 0.596078),
 	FaceCamera = false,
 	Names = true,
 	TeamColor = true,
@@ -12,7 +12,7 @@ local ESP = {
 	AttachShift = 1,
 	TeamMates = true,
 	Players = true,
-	
+	Font = "Monospace",
 	Objects = setmetatable({}, {__mode="kv"}),
 	Overrides = {}
 }
@@ -225,12 +225,18 @@ function boxBase:Update()
 		if Vis5 then
 			self.Components.Name.Visible = true
 			self.Components.Name.Position = Vector2.new(TagPos.X, TagPos.Y)
+			if Drawing.Fonts then
+				self.Components.Name.Font = Drawing.Fonts[ESP.Font] 
+			end
 			self.Components.Name.Text = self.Name
 			self.Components.Name.Color = color
 			
 			self.Components.Distance.Visible = true
 			self.Components.Distance.Position = Vector2.new(TagPos.X, TagPos.Y + 14)
 			self.Components.Distance.Text = math.floor((cam.CFrame.p - cf.p).magnitude) .."m away"
+			if Drawing.Fonts then
+				self.Components.Distance.Font = Drawing.Fonts[ESP.Font] 
+			end
 			self.Components.Distance.Color = color
 		else
 			self.Components.Name.Visible = false
@@ -283,7 +289,7 @@ function ESP:Add(obj, options)
 
 	box.Components["Quad"] = Draw("Quad", {
 		Thickness = self.Thickness,
-		Color = color,
+		Color = box.color,
 		Transparency = 1,
 		Filled = false,
 		Visible = self.Enabled and self.Boxes
@@ -294,7 +300,7 @@ function ESP:Add(obj, options)
 		Center = true,
 		Outline = true,
 		Size = 19,
-		Visible = self.Enabled and self.Names
+		Visible = self.Enabled and self.Names,
 	})
 	box.Components["Distance"] = Draw("Text", {
 		Color = box.Color,
